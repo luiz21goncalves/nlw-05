@@ -8,7 +8,7 @@
 
 ## Cronograma
 - [x] Dia 1 `setup do projeto`
-- [ ] Dia 2 `em breve...`
+- [x] Dia 2 `conexão com banco de dados`
 - [ ] Dia 3 `em breve...`
 - [ ] Dia 4 `em breve...`
 - [ ] Dia 5 `em breve...`
@@ -27,6 +27,9 @@
 
   # instale as dependências
   yarn # ou npm i
+
+  # execute as alterações no banco de dados
+  yarn typeorm migration:run
 
   # executando o projeto
   yarn dev # ou npm run dev
