@@ -9,7 +9,7 @@
 ## Cronograma
 - [x] Dia 1 `setup do projeto`
 - [x] Dia 2 `conexão com banco de dados`
-- [ ] Dia 3 `em breve...`
+- [x] Dia 3 `criação de usuários, criação de mensagens e listagem de todas mensagem de um usuário`
 - [ ] Dia 4 `em breve...`
 - [ ] Dia 5 `em breve...`
 
