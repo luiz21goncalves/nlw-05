@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm'
+import { getRepository, Repository } from 'typeorm'
 
 import { Setting } from '../entities/Setting'
 
@@ -8,10 +8,14 @@ interface ICreateSettings {
 }
 
 class SettingsService {
-  async store ({ chat, username }: ICreateSettings): Promise<Setting> {
-    const settingsRepository = getRepository(Setting)
+  private settingsRepository: Repository<Setting>
 
-    const userAlreadyExists = await settingsRepository.findOne({
+  constructor () {
+    this.settingsRepository = getRepository(Setting)
+  }
+
+  async store ({ chat, username }: ICreateSettings): Promise<Setting> {
+    const userAlreadyExists = await this.settingsRepository.findOne({
       where: { username }
     })
 
@@ -19,12 +23,12 @@ class SettingsService {
       throw new Error('User already exists')
     }
 
-    const setting = settingsRepository.create({
+    const setting = this.settingsRepository.create({
       username,
       chat
     })
 
-    await settingsRepository.save(setting)
+    await this.settingsRepository.save(setting)
 
     return setting
   }
