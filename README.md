@@ -10,7 +10,7 @@
 - [x] Dia 1 `setup do projeto`
 - [x] Dia 2 `conexão com banco de dados`
 - [x] Dia 3 `criação de usuários, criação de mensagens e listagem de todas mensagem de um usuário`
-- [ ] Dia 4 `em breve...`
+- [x] Dia 4 `criação de conexão com websocket`
 - [ ] Dia 5 `em breve...`
 
 ---
