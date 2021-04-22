@@ -7,6 +7,11 @@ interface ICreateSettings {
   chat: boolean
 }
 
+interface IUpdatedSettings {
+  username: string
+  chat: boolean
+}
+
 class SettingsService {
   private settingsRepository: Repository<Setting>
 
@@ -14,7 +19,7 @@ class SettingsService {
     this.settingsRepository = getRepository(Setting)
   }
 
-  async store ({ chat, username }: ICreateSettings): Promise<Setting> {
+  async create ({ chat, username }: ICreateSettings): Promise<Setting> {
     const userAlreadyExists = await this.settingsRepository.findOne({
       where: { username }
     })
@@ -31,6 +36,21 @@ class SettingsService {
     await this.settingsRepository.save(setting)
 
     return setting
+  }
+
+  async findByUsername (username: string): Promise<Setting> {
+    return this.settingsRepository.findOne({
+      where: { username }
+    })
+  }
+
+  async update ({ username, chat }: IUpdatedSettings): Promise<Setting> {
+    const setting = await this.settingsRepository.findOne({
+      where: { username }
+    })
+    Object.assign(setting, { chat })
+
+    return this.settingsRepository.save(setting)
   }
 }
 

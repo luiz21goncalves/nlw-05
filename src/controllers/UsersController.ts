@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
 
-import { UserService } from '../services/UserService'
+import { UsersService } from '../services/UsersService'
 
 class UsersController {
   async store (request: Request, response: Response): Promise<Response> {
     const { email } = request.body
 
-    const usersService = new UserService()
+    const usersService = new UsersService()
 
     try {
-      const user = await usersService.store(email)
+      const user = await usersService.findOrCreate(email)
 
       return response.status(201).json(user)
     } catch (err) {

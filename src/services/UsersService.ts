@@ -2,14 +2,14 @@ import { getRepository, Repository } from 'typeorm'
 
 import { User } from '../entities/User'
 
-class UserService {
+class UsersService {
   private usersRepository: Repository<User>
 
   constructor () {
     this.usersRepository = getRepository(User)
   }
 
-  async store (email: string): Promise<User> {
+  async findOrCreate (email: string): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findOne({
       where: { email }
     })
@@ -26,4 +26,4 @@ class UserService {
   }
 }
 
-export { UserService }
+export { UsersService }

@@ -1,3 +1,4 @@
-import { app } from './app'
+import { http } from './app'
+import './websockets/client'
 
-app.listen(3333, () => console.log('Server started'))
+http.listen(3333, () => console.log('Server started'))

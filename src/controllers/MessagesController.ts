@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
 
-import { MessageService } from '../services/MessageService'
+import { MessagesService } from '../services/MessagesService'
 
 class MessagesController {
   async index (request: Request, response: Response): Promise<Response> {
     const { user_id } = request.params
 
     try {
-      const messageService = new MessageService()
+      const messagesService = new MessagesService()
 
-      const messages = await messageService.listByUser(user_id)
+      const messages = await messagesService.listByUser(user_id)
 
       return response.json(messages)
     } catch (err) {
@@ -22,9 +22,9 @@ class MessagesController {
   async store (request: Request, response: Response): Promise<Response> {
     const { text, user_id, admin_id } = request.body
 
-    const messageService = new MessageService()
+    const messagesService = new MessagesService()
 
-    const message = await messageService.store({
+    const message = await messagesService.create({
       text,
       user_id,
       admin_id

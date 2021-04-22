@@ -8,7 +8,7 @@ interface ICreateMessage {
   text: string
 }
 
-class MessageService {
+class MessagesService {
   private messagesRepository: Repository<Message>
 
   constructor () {
@@ -24,7 +24,7 @@ class MessageService {
     return messages
   }
 
-  async store ({ user_id, admin_id, text }: ICreateMessage): Promise<Message> {
+  async create ({ user_id, admin_id, text }: ICreateMessage): Promise<Message> {
     const message = this.messagesRepository.create({
       user_id,
       admin_id,
@@ -37,4 +37,4 @@ class MessageService {
   }
 }
 
-export { MessageService }
+export { MessagesService }
