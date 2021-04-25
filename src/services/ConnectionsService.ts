@@ -9,6 +9,11 @@ interface ICreateConnection {
   socket_id: string
 }
 
+interface IUpdateConnection {
+  user_id: string
+  admin_id: string
+}
+
 class ConnectionsService {
   private connectionsRepository: Repository<Connection>
 
@@ -33,6 +38,29 @@ class ConnectionsService {
     return this.connectionsRepository.findOne({
       where: { user_id }
     })
+  }
+
+  async findBySocketId (socket_id: string): Promise<Connection> {
+    return this.connectionsRepository.findOne({
+      where: { socket_id },
+      relations: ['user']
+    })
+  }
+
+  async findAllWithoutAdmin ():Promise<Connection[]> {
+    return this.connectionsRepository.find({
+      where: { admin_id: null },
+      relations: ['user']
+    })
+  }
+
+  async update ({ admin_id, user_id }:IUpdateConnection): Promise<Connection> {
+    const connection = await this.connectionsRepository.findOne({
+      where: { user_id }
+    })
+    Object.assign(connection, { admin_id })
+
+    return this.connectionsRepository.save(connection)
   }
 }
 

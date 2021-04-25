@@ -23,11 +23,15 @@ app.get('/pages/client', (request, response) => {
   return response.render('html/client.html')
 })
 
+app.get('/pages/admin', (request, response) => {
+  return response.render('html/admin.html')
+})
+
 const http = createServer(app)
 const io = new Server(http)
 
 io.on('connection', socket => {
-  console.log('connect', socket.id)
+  console.log(' connection', socket.id)
 })
 
 app.use(express.json())

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-    "typeorm": "tsnd ./node_modules/typeorm/cli.js"
+    "typeorm": "tsnd ./node_modules/typeorm/cli.js",
+    "seed": "tsnd ./src/database/seed.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

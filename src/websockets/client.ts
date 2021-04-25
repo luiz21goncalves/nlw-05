@@ -31,5 +31,28 @@ io.on('connect', (socket) => {
       text,
       user_id: user.id
     })
+
+    const allMessages = await messagesService.listByUser(user.id)
+
+    socket.emit('client_list_all_messages', allMessages)
+
+    const allUsers = await connectionsService.findAllWithoutAdmin()
+
+    io.emit('admin_list_all_users', allUsers)
+  })
+
+  socket.on('client_send_to_message', async ({ text, socket_admin_id }) => {
+    const { user_id, user } = await connectionsService.findBySocketId(socket.id)
+
+    const message = await messagesService.create({
+      text,
+      user_id
+    })
+
+    io.to(socket_admin_id).emit('admin-receive-message', {
+      message,
+      user_id,
+      email: user.email
+    })
   })
 })
