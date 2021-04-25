@@ -11,7 +11,7 @@
 - [x] Dia 2 `conexão com banco de dados`
 - [x] Dia 3 `criação de usuários, criação de mensagens e listagem de todas mensagem de um usuário`
 - [x] Dia 4 `criação de conexão com websocket`
-- [ ] Dia 5 `em breve...`
+- [x] Dia 5 `finalizado o chat em tempo real`
 
 ---
 
@@ -26,14 +26,15 @@
   cd nlw-05
 
   # instale as dependências
-  yarn # ou npm i
+  # os exemplos estão usando o yarn, você também pode user npm
+  yarn
 
   # execute as alterações no banco de dados
-  yarn typeorm migration:run
+  yarn seed
 
   # executando o projeto
-  yarn dev # ou npm run dev
-
-  # o projeto vai ser executado na porta 3333
-  # divirta-se testando 😊
+  yarn dev
 ```
+
+- [clique aqui para abrir a parte do cliente](http://localhost:3333/pages/client)
+- [clique aqui para abrir a parte do administrador](http://localhost:3333/pages/admin)
